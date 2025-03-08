@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balancing Scales: Exploring Job Compensation and Cost of Living Disparities</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Research Paper Content -->
+  <section id="research">
+    <h1>Balancing Scales: Exploring Job Compensation and Cost of Living Disparities</h1>
+    <p><i>The summarized version</i></p><br>
+    <p><strong>Author:</strong> Kyaira Boughton</p>
+    <p><strong>Project Date:</strong> March 1st, 2024</p>
+    <p><strong>Code Link:</strong> <a href="https://colab.research.google.com/drive/1hdk_jdd9zOsykA9t1sCdCPwmZctLKoOG#scrollTo=Rrn-MEmnJcE4" 
+        target="_blank">View in Google Codelab</a></p>
+
+    <!-- Abstract -->
+    <h2>Abstract</h2>
+    <p>This research investigates the intricate relationship between job compensation 
+        and the cost of living, offering novel insights into the contemporary employment 
+        landscape. Focusing on millennials and recent graduates navigating the job market, 
+        the study employs a unique approach by evaluating compensation within the context 
+        of specific regions. Distinguishing itself from existing literature, the research 
+        utilizes a random forest regression to integrate geographical factors, shedding 
+        light on how location contributes to the compensation dynamics. The research 
+        leverages meticulously curated datasets, aligning with the 2023 US job market. 
+        Despite challenges in data processing and model training, the logistic regression 
+        models provide valuable categorization of job sectors and seniority levels. The 
+        study contributes to ongoing employment discussions, prompting further exploration 
+        of nuanced factors influencing compensation in the modern workforce.</p>
+    <p><strong>Keywords:</strong> job compensation, cost of living, employment landscape</p>
+
+    <!-- Introduction -->
+    <h2>Introduction</h2>
+    <p>In contemporary discourse, employment and compensation discussions, particularly 
+        among the younger generation, are widespread. The challenges of securing 
+        employment and concerns about relatively low salaries are persistent topics. 
+        This paper addresses the pertinent question of how individuals in the modern 
+        era are remunerated, focusing on substantiated data. Beyond job-seeking concerns, 
+        it examines economic disparities' broader implications for employee well-being. 
+        As millennials and recent graduates navigate the job market, this project 
+        evaluates job compensation in specific regions concerning the cost of living. 
+        Going beyond simplistic predictors, it explores the real-world impact on 
+        individuals' lives. While existing research has explored salary prediction models, 
+        with notable works such as Jackman and Reid's (2013) "Predicting Job Salaries 
+        from Text Descriptions," this essay distinguishes itself through its unique focus 
+        on the geographical aspect of job locations and an end goal not of prediction, 
+        but inference and analysis. Through this exploration, the essay aims to 
+        contribute novel insights into the intricate factors shaping modern job salaries.</p>
+
+    <!-- Selecting the Data -->
+    <h2>Selecting the Data</h2>
+    <p>The foundation of my research lies in two distinct datasets meticulously curated 
+        to unravel the intricacies of the United States job market in 2023. 
+        The primary source, the Kaggle job posting dataset, encompasses approximately 
+        33,000 job postings extracted from the LinkedIn website. The allure of this 
+        dataset lies in its focus on the United States, aligning seamlessly with our 
+        research interests. The temporal relevance of the data, being from 2023, ensures 
+        a current and pertinent examination of the job market. From the multitude of 
+        columns available, we selected key features crucial to our analysis, including 
+        job descriptions, titles, skills, and salary details (maximum, median, and minimum). 
+        To ensure the robustness of our analysis, we excluded job postings outside the 
+        United States and removed entries lacking salary information. Given that our primary 
+        focus was on average or median salaries, we normalized job postings with salary ranges 
+        by averaging them. For jobs with hourly wages, we converted them to annual salaries by 
+        multiplying with 2080. Recognizing the limitation of this approach, we acknowledge a 
+        potential overestimation of average salaries. Furthermore, we refined the dataset by 
+        eliminating entries with a generic location like "United States" without specifying a 
+        state or city. This meticulous curation resulted in a dataset comprising around 12,500 
+        job postings, setting the stage for our subsequent analyses. The integration of 
+        geocoding API facilitated harmonization of job locations across datasets.</p>
+
+    <!-- Image 1: Map of US cities represented in cost of living dataset -->
+    <img src="../resources/projects/cost of living/Map of Cities in Kaggle Dataset.png" alt="Map of US cities represented in cost of living dataset" 
+    class="float-left">
+
+    <p>The second dataset, abbreviated as COL (Cost of Living), consists of cost of 
+        living indices for approximately 500 US cities in 2021. Each entry includes city, 
+        state, and the cost of living index. Given the importance of comparing purchasing 
+        power, we multiplied the cost of living index by the average yearly expenditure 
+        for 2020 ($61,334) and 2023 ($72,967). This enhancement enables meaningful cross-
+        year comparisons, enriching the dataset's utility. Similar to the job dataset, 
+        geocoding API was employed to align city locations consistently.</p>
+
+    <!-- Clear Floats -->
+    <div class="clear"></div>
+
+    <!-- Training Models for Filtration -->
+    <h2>Training Models for Filtration</h2>
+
+    <!-- Image 2: Using the final dataset to plot the average percentage difference of popular cities -->
+    <img src="../resources/projects/cost of living/Cost Of Living Average Percentage Difference.png" alt="Using the final dataset to plot the average percentage difference of popular cities" 
+    class="float-right">
+
+    <p>In this research, logistic regression was employed as the primary modeling 
+        approach to classify job sectors and seniority levels within the dataset. 
+        The rationale behind choosing logistic regression lies in its suitability for 
+        categorical prediction, precisely aligned with the nature of the research question 
+        aiming to discern potential associations between job factors and higher wages or 
+        superior job opportunities within specific geographic regions. Logistic regression 
+        is well-established for categorical outcome prediction and thus was deemed apt for 
+        the task at hand. The dataset, comprising a total of 10,500 entries once non-geocodable jobs were removed, underwent a 
+        rigorous labeling process involving logistic regression for job sectors and 
+        seniority levels. To facilitate model training and testing, a 70/30 train-test 
+        split was implemented on a final dataset containing 300 entries that I hand labeled. 
+        The final eleven job sectors were decided by condensing the job sectors found on 
+        Careerpilot’s website. This strategic partitioning enabled the creation of 
+        reliable predictive models. This graph highlights the average percentage 
+        difference in purchasing power across popular US cities. It reveals significant 
+        disparities, with some cities offering salaries well above the cost of living, 
+        while others fall short.</p>
+        <!--<strong>Using the final dataset to plot the average percentage difference of 
+            popular cities.</strong> -->
+
+    <!-- Clear Floats -->
+    <div class="clear"></div>
+
+    <!-- Results -->
+    <h2>Results</h2>
+    <p>The results of the logistic regression models for job sectors and seniority 
+        levels provide valuable insights into the predictive capabilities of the 
+        trained models. The accuracy scores obtained during the training process serve 
+        as crucial metrics for evaluating the models' performance. The logistic regression 
+        model for job sectors achieved an accuracy score of 0.33, indicating a lower 
+        predictive performance in categorizing job sectors. In contrast, the model 
+        predicting job seniority levels exhibited a more favorable accuracy score of 0.74, 
+        signifying a higher degree of precision in predicting seniority.</p>
+
+    <!-- Image 3: Box plot of cost of living percentage difference by job posting seniority -->
+    <img src="../resources/projects/cost of living/Box Plot of Cost of Living Percentage by Seniority.png" alt="Box plot of cost of living percentage difference by job posting seniority (improperly labeled)" 
+    class="float-left">
+    <p><strong>Box plot of cost of living percentage difference by job posting seniority.</strong> 
+        This box plot illustrates the disparity in compensation relative to the cost 
+        of living across different seniority levels. Senior positions consistently 
+        offer salaries above the cost of living, while junior positions fall significantly 
+        below. This raises important questions about equitable compensation for 
+        entry-level roles.</p>
+
+    <!-- Clear Floats -->
+    <div class="clear"></div>
+    
+    <!-- Conclusion -->
+    <h2>Conclusion</h2>
+    <p>This research delves into a comparative analysis of the cost of living 
+        across different locations, contributing valuable insights to the field of 
+        employment research and opportunities. The study explores a potential avenue 
+        for future researchers, suggesting ways to enhance categorization within job data 
+        for more nuanced analysis. The outlined method is poised to aid in creating more 
+        specific job information categories. The findings challenge the perception of job 
+        salaries falling below the cost of living in specific areas. However, it is 
+        crucial to note that the dataset had several limitations that may have affected 
+        the effectiveness of this iteration of this research project.</p>
+
+    <!-- References -->
+    <h2>References</h2>
+    <ul>
+      <li>Geocoding API: <a href="https://api-ninjas.com/api/geocoding" target="_blank">https://api-ninjas.com/api/geocoding</a></li>
+      <li>Jackman, S., & Reid, G. (2013, April 16). Predicting Job Salaries from Text Descriptions. doi:<a href="http://dx.doi.org/10.14288/1.0075767" target="_blank">http://dx.doi.org/10.14288/1.0075767</a></li>
+      <li>Jeffrey Heer, Dominik Moritz, Jake VanderPlas, and Brock Craft (2023, Apr. 23). Cartographic Visualization. <a href="https://colab.research.google.com/github/uwdata/visualization-curriculum/blob/master/altair_cartographic.ipynb#scrollTo=pLOzausSsYzh" target="_blank">Link</a></li>
+      <li>Jobs by Job Sector. Careerpilot: <a href="https://www.careerpilot.org.uk/job-sectors/sectors" target="_blank">https://www.careerpilot.org.uk/job-sectors/sectors</a></li>
+      <li>Kon, A. (2023, Nov) LinkedIn Job Postings. Kaggle: <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings" target="_blank">https://www.kaggle.com/datasets/arshkon/linkedin-job-postings</a></li>
+      <li>Mak, A. (2021, Oct. 28). AdvisorSmith City Cost of Living Index. Advisor Smith: <a href="https://advisorsmith.com/data/coli/" target="_blank">https://advisorsmith.com/data/coli/</a></li>
+      <li>OpenAI. (2024). ChatGPT (Feb 13 version) [Large language model]. <a href="https://chat.openai.com/chat" target="_blank">https://chat.openai.com/chat</a></li>
+    </ul>
+  </section>
+</body>
+</html>

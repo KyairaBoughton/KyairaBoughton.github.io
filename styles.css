@@ -70,3 +70,47 @@ body, h1, h2, h3, p, ul, li {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  /* Additional Styles for Research Page */
+#research h2 {
+  margin-top: 20px;
+  color: #007BFF;
+}
+
+#research ul {
+  margin-left: 20px;
+}
+
+#research a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#research a:hover {
+  text-decoration: underline;
+}
+
+/* Image Alignment Styles */
+.float-left {
+  float: left;
+  margin: 0 20px 20px 0; /* Top, Right, Bottom, Left */
+  max-width: 50%; /* Adjust as needed */
+  height: auto;
+}
+
+.float-right {
+  float: right;
+  margin: 0 0 20px 20px; /* Top, Right, Bottom, Left */
+  max-width: 50%; /* Adjust as needed */
+  height: auto;
+}
+
+/* Clear floats to prevent layout issues */
+.clear {
+  clear: both;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
