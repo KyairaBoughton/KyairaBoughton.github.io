@@ -114,3 +114,25 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* Internship Page Styles */
+#internships {
+  padding: 20px;
+}
+
+.internship {
+  margin-bottom: 40px;
+}
+
+.internship h2 {
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.internship ul {
+  margin-left: 20px;
+}
+
+.internship ul li {
+  margin-bottom: 10px;
+}
